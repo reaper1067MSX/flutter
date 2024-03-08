@@ -1,4 +1,5 @@
 import 'energy_plant.dart';
+import 'type_plant.dart';
 
 /// extends or implements
 class WindPlant extends EnergyPlant {

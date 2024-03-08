@@ -1,3 +1,5 @@
+import 'type_plant.dart';
+
 abstract class EnergyPlant {
   double energyLeft;
   PlantType type;
@@ -11,4 +13,4 @@ abstract class EnergyPlant {
   /// nuclear, wind, water
 }
 
-enum PlantType { nuclear, wind, water }
+
