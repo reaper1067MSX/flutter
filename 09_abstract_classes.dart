@@ -4,8 +4,20 @@ void main() {
 
   print(windPlant);
 
-  print('wind: ${chargePhone(windPlant)}');
+  final nuclearPlant = NuclearPlant(energyLeft: 50);
 
+  print(nuclearPlant);
+  print('wind: ${chargePhone(windPlant)}');
+  print('nuclear: ${chargePhone(nuclearPlant)}');
+
+}
+
+double chargePhone( EnergyPlant plant ) {
+  if(plant.energyLeft < 10) {
+    throw Exception('Not enough energy');
+  }
+
+  return plant.energyLeft - 10;
 }
 
 enum PlanType {
@@ -15,7 +27,7 @@ enum PlanType {
 abstract class EnergyPlant {
 
   double energyLeft;
-  PlanType type; // nuclear, wind, water
+  final PlanType type; // nuclear, wind, water
 
   EnergyPlant({ required this.energyLeft, required this.type });
 
@@ -36,10 +48,21 @@ class WindPlant extends EnergyPlant {
 
 }
 
-double chargePhone( EnergyPlant plant ) {
-  if(plant.energyLeft < 10) {
-    throw Exception('Not enough energy');
-  }
+class NuclearPlant implements EnergyPlant {
+  @override
+  double energyLeft;
 
-  return plant.energyLeft - 10;
+  @override
+  final PlanType type = PlanType.nuclear;
+
+  NuclearPlant({ required this.energyLeft });
+
+  @override
+  void consumeEnergy(double amount) {
+    energyLeft =- (amount * .5);
+  }
+  
+  
 }
+
+
